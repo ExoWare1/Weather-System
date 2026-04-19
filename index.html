@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#102033">
+  <meta name="description" content="ExoBoostX Weather is a neon-styled weather web app with live forecasts, saved places, and mobile-friendly design.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ExoBoostX">
+  <title>ExoBoostX Weather</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="icons/app-icon.svg">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Mobile Weather System</p>
+        <h1>ExoBoostX Weather</h1>
+        <p class="hero-copy">
+          Neon forecast tracking for your day, powered by live search, current conditions, hourly detail, and the week ahead.
+        </p>
+      </div>
+
+      <div class="hero-badges">
+        <span class="status-pill" id="status-pill">Ready</span>
+        <button id="install-app" class="icon-button" type="button" hidden>Install App</button>
+        <button id="unit-toggle" class="icon-button" type="button" aria-pressed="false">Switch to F</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel search-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Find A Place</p>
+            <h2>Search Weather</h2>
+          </div>
+        </div>
+
+        <form id="search-form" class="search-form">
+          <label class="input-wrap">
+            <span class="sr-only">Search location</span>
+            <input id="search-input" type="search" placeholder="Search city or town" autocomplete="off" required>
+          </label>
+          <div class="search-actions">
+            <button class="primary-button" type="submit">Search</button>
+            <button class="secondary-button" id="current-location" type="button">Use My Location</button>
+          </div>
+        </form>
+
+        <div id="search-feedback" class="feedback">Search for any city to load live weather data.</div>
+        <div id="search-results" class="search-results"></div>
+      </section>
+
+      <section class="panel now-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Now</p>
+            <h2 id="location-name">Loading sample city</h2>
+          </div>
+          <button id="save-location" class="icon-button" type="button">Save Place</button>
+        </div>
+
+        <div class="now-grid">
+          <div class="now-main">
+            <div class="condition-art is-sun" id="condition-art" aria-hidden="true">
+              <span id="condition-glyph">SUN</span>
+            </div>
+            <div>
+              <div class="temperature-line">
+                <strong id="current-temp">--</strong>
+                <span id="condition-text">Waiting for forecast</span>
+              </div>
+              <p id="location-meta" class="muted">Select a location to begin.</p>
+              <p id="last-updated" class="last-updated">Waiting for first update.</p>
+            </div>
+          </div>
+
+          <div class="metrics-grid" id="metrics-grid"></div>
+        </div>
+      </section>
+
+      <section class="panel highlight-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Highlights</p>
+            <h2>Today At A Glance</h2>
+          </div>
+        </div>
+        <div id="highlight-grid" class="highlight-grid"></div>
+      </section>
+
+      <section class="panel hourly-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Next 24 Hours</p>
+            <h2>Hourly Forecast</h2>
+          </div>
+        </div>
+        <div id="hourly-forecast" class="hourly-forecast"></div>
+      </section>
+
+      <section class="panel daily-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Week Ahead</p>
+            <h2>7-Day Forecast</h2>
+          </div>
+        </div>
+        <div id="daily-forecast" class="daily-forecast"></div>
+      </section>
+
+      <section class="panel saved-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Quick Access</p>
+            <h2>Saved Places</h2>
+          </div>
+        </div>
+        <div id="saved-locations" class="saved-locations"></div>
+      </section>
+
+      <section class="panel tips-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Ready For Phone</p>
+            <h2>Use It Like An App</h2>
+          </div>
+        </div>
+        <div class="tips-list">
+          <article class="tip-card">
+            <strong>Install to Home Screen</strong>
+            <p>Once hosted, add ExoBoostX Weather to your home screen for a full-screen app feel.</p>
+          </article>
+          <article class="tip-card">
+            <strong>Save Your Cities</strong>
+            <p>Pin your regular places so they are one tap away before commuting or traveling.</p>
+          </article>
+          <article class="tip-card">
+            <strong>Check Rain + Wind Fast</strong>
+            <p>The highlights panel is tuned for quick daily decisions, not just raw forecast numbers.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <template id="result-template">
+    <button type="button" class="result-card"></button>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
